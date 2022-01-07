@@ -24,6 +24,9 @@ def enable_download_headless(browser, download_dir: str):
     params = {'cmd':'Page.setDownloadBehavior', 'params': {'behavior': 'allow', 'downloadPath': download_dir}}
     browser.execute("send_command", params)
 
+GOOGLE_CHROME_PATH = '/app/.apt/usr/bin/google_chrome'
+CHROMEDRIVER_PATH = '/app/.chromedriver/bin/chromedriver'
+
 chrome_options = webdriver.ChromeOptions()
 chrome_options.add_argument("--headless")
 chrome_options.add_argument("--disable-dev-shm-usage")
@@ -32,25 +35,26 @@ chrome_options.add_argument("--verbose")
 chrome_options.add_argument('--disable-gpu')
 chrome_options.add_argument('--disable-software-rasterizer')
 chrome_options.add_argument("--disable-notifications")
-PDF_PATH = f"{os.getcwd()}"
+chrome_options.binary_location = GOOGLE_CHROME_PATH
+file_dir = os.path.abspath('')
+
 chrome_options.add_experimental_option("prefs", {
-    "download.default_directory": "C:\\Users\\brend\\wsl\\Emoji", #Change default directory for downloads
+    "download.default_directory": str(file_dir), #Change default directory for downloads
     "download.prompt_for_download": False, #To auto download the file
     "download.directory_upgrade": True,
     "plugins.always_open_pdf_externally": True, #It will not show PDF directly in chrome
     "safebrowsing_for_trusted_sources_enabled": False,
     "safebrowsing.enabled": False
 })
-print(f"{os.getcwd()}")
 
 def scihub(doi: str):
     try:
-        PATH = str(path) + "/chromedriver.exe"
+        PATH = CHROMEDRIVER_PATH
         service = Service(PATH)
         driver = webdriver.Chrome(service=service, options=chrome_options)
-        enable_download_headless(driver, "C:\\Users\\brend\\wsl\\Emoji")
+        enable_download_headless(driver, str(file_dir))
         driver.get(f"https://sci.bban.top/pdf/{doi}.pdf")
-        time.sleep(3)
+        time.sleep(6)
         driver.quit()
         return True
     except Exception as e:
@@ -58,3 +62,5 @@ def scihub(doi: str):
         return False
 
 # print(scihub("10.1145/1721654.1721659"))
+file_dir = os.path.abspath('')
+print(str(file_dir))
