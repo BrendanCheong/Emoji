@@ -8,10 +8,9 @@ flask = "*"
 beautifulsoup4 = "*"
 selenium = "*"
 gunicorn = "*"
-pyvirtualdisplay = "*"
-install = "*"
-xvfbwrapper = "*"
 webdriver-manager = "*"
+pymupdf = "*"
+emoji = "*"
 
 [dev-packages]
 
