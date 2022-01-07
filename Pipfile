@@ -1,0 +1,19 @@
+[[source]]
+url = "https://pypi.org/simple"
+verify_ssl = true
+name = "pypi"
+
+[packages]
+flask = "*"
+beautifulsoup4 = "*"
+selenium = "*"
+gunicorn = "*"
+pyvirtualdisplay = "*"
+install = "*"
+xvfbwrapper = "*"
+webdriver-manager = "*"
+
+[dev-packages]
+
+[requires]
+python_version = "3.7"
