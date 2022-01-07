@@ -1,1 +1,2 @@
-web: gunicorn emoji-scholar.wsgi
+web: gunicorn
+heroku ps:scale web=1
