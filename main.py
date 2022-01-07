@@ -40,6 +40,3 @@ def emoji_movie():
         status = jsonify({'success': False, 'msg': str(e)})
         status.status_code = 404
         return status
-
-if __name__ == '__main__':
-    app.run()
