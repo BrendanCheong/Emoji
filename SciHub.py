@@ -27,7 +27,7 @@ def enable_download_headless(browser, download_dir: str):
 GOOGLE_CHROME_PATH = '/app/.apt/usr/bin/google_chrome'
 CHROMEDRIVER_PATH = '/app/.chromedriver/bin/chromedriver'
 
-chrome_options = webdriver.ChromeOptions()
+chrome_options = webdriver.ChromeOptions() # make sure its headless so that heroku can run it
 chrome_options.add_argument("--headless")
 chrome_options.add_argument("--disable-dev-shm-usage")
 chrome_options.add_argument("--no-sandbox")
@@ -50,11 +50,11 @@ chrome_options.add_experimental_option("prefs", {
 def scihub(doi: str):
     try:
         PATH = CHROMEDRIVER_PATH
-        service = Service(PATH)
+        service = Service(PATH) # wrap it in a Service object for webdriver
         driver = webdriver.Chrome(service=service, options=chrome_options)
         enable_download_headless(driver, str(file_dir))
-        driver.get(f"https://sci.bban.top/pdf/{doi}.pdf")
-        time.sleep(6)
+        driver.get(f"https://sci.bban.top/pdf/{doi}.pdf") # go to to scihub to download pdf
+        time.sleep(6) # delay the browser so it can download the pdf
         driver.quit()
         return True
     except Exception as e:

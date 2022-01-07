@@ -11,6 +11,7 @@ gunicorn = "*"
 webdriver-manager = "*"
 pymupdf = "*"
 emoji = "*"
+flask-cors = "*"
 
 [dev-packages]
 
